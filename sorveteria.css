@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #fff0f5;
+}
+
+header {
+    background: #ff4d6d;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+}
+
+.box {
+    background: white;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00000022;
+}
+
+h2 {
+    margin: 0 0 15px 0;
+    color: #c9184a;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button:hover {
+    background: #e63950;
+    cursor: pointer;
+}
+
+.info {
+    margin-top: 15px;
+    padding: 10px;
+    background: #ffe5ec;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th {
+    background: #ffc2d1;
+    padding: 10px;
+}
+
+table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+footer {
+    background: #ff4d6d;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+    }
+
+    header, main, footer {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+header {
+    display: flex;       
+    align-items: center;
+    justify-content: center; 
+    gap: 10px;          
+    padding: 20px;
+}
+
+header .sorveteria {
+    width: 150px;
+    height: auto; 
+}

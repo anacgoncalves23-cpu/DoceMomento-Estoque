@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorveteria Doce Momento</title>
+    <link rel="stylesheet" href="sorveteria.css">
+</head>
+
+<body>
+
+<header>
+       <img src="sorveteria2.png" alt="Sorveteria" class="sorveteria"> 
+    <h1> Sorveteria Doce Momento</h1>
+ 
+</header>
+
+<main>
+
+    <section class="box">
+        <h2>Dados do Cliente</h2>
+
+        <form id="formCliente">
+            <label>Nome do Cliente:</label>
+            <input type="text" id="nomeCliente" placeholder="Digite o nome" required>
+
+            <label>Telefone:</label>
+            <input type="text" id="telefoneCliente" placeholder="Digite o telefone" required>
+
+            <button type="submit">Salvar Cliente</button>
+        </form>
+
+        <div id="clienteInfo" class="info" style="display:none;">
+            <p><strong>Cliente:</strong> <span id="nomeExibido"></span></p>
+            <p><strong>Telefone:</strong> <span id="telExibido"></span></p>
+        </div>
+    </section>
+
+
+    <section class="box">
+        <h2>Sorvetes de Massa</h2>
+
+        <form class="formProduto" data-tipo="massa">
+            <label>Escolha o Sorvete:</label>
+            <select required>
+                <option value="">Selecione...</option>
+                <option value="Sorvete de Morango|40.00">Sorvete de Morango - R$ 40,00</option>
+                <option value="Sorvete de Flocos|42.00">Sorvete de Flocos - R$ 42,00</option>
+                <option value="Sorvete de Chocolate|45.00">Sorvete de Chocolate - R$ 45,00</option>
+            </select>
+
+            <label>Quantidade:</label>
+            <input type="number" min="1" value="1" required>
+
+            <button type="submit">Adicionar Sorvete</button>
+        </form>
+    </section>
+
+ 
+    <section class="box">
+        <h2>Picolés</h2>
+
+        <form class="formProduto" data-tipo="picole">
+            <label>Escolha o Picolé:</label>
+            <select required>
+                <option value="">Selecione...</option>
+                <option value="Picolé de Limão|1.50">Picolé de Limão - R$ 1,50</option>
+                <option value="Picolé de Uva|1.50">Picolé de Uva - R$ 1,50</option>
+                <option value="Picolé de Coco|1.50">Picolé de Coco - R$ 1,50</option>
+            </select>
+
+            <label>Quantidade:</label>
+            <input type="number" min="1" value="1" required>
+
+            <button type="submit">Adicionar Picolé</button>
+        </form>
+    </section>
+
+
+    <section class="box">
+        <h2>Pedido Completo</h2>
+
+        <table id="tabelaPedido">
+            <tr>
+                <th>Tipo</th>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Subtotal</th>
+            </tr>
+        </table>
+
+        <h3>Total: R$ <span id="total">0.00</span></h3>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2025 Sorveteria Doce Momento</p>
+</footer>
+
+
+
+<script>
+
+document.getElementById("formCliente").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    document.getElementById("clienteInfo").style.display = "block";
+    document.getElementById("nomeExibido").innerText = document.getElementById("nomeCliente").value;
+    document.getElementById("telExibido").innerText = document.getElementById("telefoneCliente").value;
+});
+
+
+
+let totalCentavos = 0; 
+const tabela = document.getElementById("tabelaPedido");
+const totalSpan = document.getElementById("total");
+
+document.querySelectorAll(".formProduto").forEach(form => {
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const tipo = form.getAttribute("data-tipo");
+        const select = form.querySelector("select");
+        const qtd = parseInt(form.querySelector("input").value);
+
+        if (!select.value) return;
+
+        const [nome, preco] = select.value.split("|");
+
+       
+        const precoCentavos = Math.round(parseFloat(preco) * 100);
+
+        const subtotalCentavos = precoCentavos * qtd;
+
+        totalCentavos += subtotalCentavos;
+
+        const subtotalFormatado = (subtotalCentavos / 100).toFixed(2);
+        totalSpan.innerText = (totalCentavos / 100).toFixed(2);
+
+        const row = tabela.insertRow();
+        row.innerHTML = `
+            <td>${tipo === "massa" ? "Sorvete de Massa" : "Picolé"}</td>
+            <td>${nome}</td>
+            <td>${qtd}</td>
+            <td>R$ ${subtotalFormatado}</td>
+        `;
+    });
+});
+</script>
+
+</body>
+</html>
+
